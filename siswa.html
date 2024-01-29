@@ -18,13 +18,13 @@
 
   <u1 id="daptar-Siswa"></u1>
 
-  <a href="index.html">form tambah siswa</a>
+  <a href="index.html">form tambah Siswa</a>
 
   <script type="module">
     import { ambilDaptarSiswa } from "./main.js";
 
     $(document).ready(async function() {
-      let elemenNamaSiswa = $('#daptar-siswa');
+      let elemenNamaSiswa = $('#daptar-Siswa');
       let daftarSiswa = await ambilDaptarSiswa();
 
       daftarSiswa.forEach((data) => {
