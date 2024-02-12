@@ -4,9 +4,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>daptar siswa</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <title>Daftar Siswa</title>
 
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 
   <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 
@@ -14,29 +14,29 @@
 </head>
 
 <body class="m-4">
-  <h1>daptar siswa</h1>
+  <h1>Daftar Siswa</h1>
 
-  <u1 id="daptar-Siswa"></u1>
+  <ul id="daftar-siswa" class="list-group"></ul>
 
-  <a href="index.html">form tambah Siswa</a>
+  <a href="index.html">Form Tambah Siswa</a>
 
   <script type="module">
-    import { ambilDaptarSiswa, hapusSiswa } from "./main.js";
-
+    import { ambilDaftarSiswa, hapusSiswa } from "./main.js";
+    
     $(document).ready(async function() {
-      let elemenNamaSiswa = $('#daptar-Siswa');
-      let daftarSiswa = await ambilDaptarSiswa();
-
+      let elemenNamaSiswa = $('#daftar-siswa');
+      let daftarSiswa = await ambilDaftarSiswa();
+      
       daftarSiswa.forEach((data) => {
         elemenNamaSiswa.append(
-'<li class="list-group-item d-flex justify-content-between">' +
+          '<li class="list-group-item d-flex justify-content-between">' +
           '<label>' +
           data.nama +
           '</label>' +
           '<div>' +
-          '<a href="#" class="me-2"data="' + 
+          '<a href="#" class="me-2 link-ubah" data="' +
           data.id +
-          '">ubah</a>' +
+          '">Ubah</a>' +
           ' <button class="btn btn-danger tombol-hapus" data="' +
           data.id +
           '">Hapus</button>' +
@@ -49,8 +49,9 @@
         await hapusSiswa($(this).attr('data'));
         location.reload();
       })
-      $('link-ubah').clikc (async Function (){
-        window.location.replace('ubah-Siswa.html?docId=' + $(this).attr('data'));
+      
+      $('.link-ubah').click(async function() {
+        window.location.replace('ubah-siswa.html?docId=' + $(this).attr('data'));
       })
     });
   </script>

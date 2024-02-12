@@ -26,9 +26,9 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-export async function ambilDaptarSiswa () {
-  const siswaRef = collection(db,"siswa");
-  const q = query(siswaRef,orderBy("nama"));
+export async function ambilDaftarSiswa () {
+  const siswaRef = collection(db, "siswa");
+  const q = query(siswaRef, orderBy("nama"));
   const querySnapshot = await getDocs(q);
   
   let retval = [];
@@ -38,28 +38,29 @@ export async function ambilDaptarSiswa () {
   
   return retval;
 }
+
 export async function tambahSiswa(val) {
   try {
-    const docRef = await addDoc(collection(db,"siswa"),{
+    const docRef = await addDoc(collection(db, "siswa"), {
       nama: val
     });
-    console.log('Berhasil: ' + docRef.id);
+    console.log('Berhasil menyimpan dokumen dengan ID: ' + docRef.id);
   } catch (e) {
-    console.log('Error menambah dokumen:' + e);
+    console.log('Error menambah dokumen: ' + e);
   }
 }
-export async function hapusSiswa(docId){
+
+export async function hapusSiswa(docId) {
   await deleteDoc(doc(db, "siswa", docId));
 }
 
-
 export async function ubahSiswa(docId, val) {
-  await updateDoc(doc(db,"Siswa",docId),{nama: val});
+  await updateDoc(doc(db, "siswa", docId), { nama: val });
 }
 
 export async function ambilSiswa(docId) {
-  const docRef = await doc(db,"Siswa", docId);
-  const docSnap = await getDocs(docRef);
+  const docRef = await doc(db, "siswa", docId);
+  const docSnap = await getDoc(docRef);
   
   return await docSnap.data();
 }
