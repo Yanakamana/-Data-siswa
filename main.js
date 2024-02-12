@@ -41,11 +41,11 @@ export async function tambahSiswa(val) {
     const docRef = await addDoc(collection(db,"siswa"),{
       nama: val
     });
-    console.log('Berhasil menyimpan dokumen dengan ID: ' + docRef.id);
+    console.log('Berhasil: ' + docRef.id);
   } catch (e) {
-    console.log('Error menambah dokumen' + e);
+    console.log('Error menambah dokumen:' + e);
   }
 }
-export async function hapusSiswa(docId) {
+export async function hapusSiswa(docId){
   await deleteDoc(doc(db, "siswa", docId));
 }
