@@ -34,6 +34,9 @@
           data.nama +
           '</label>' +
           '<div>' +
+          '<a href="#" class="me-2"data="' + 
+          data.id +
+          '">ubah</a>' +
           ' <button class="btn btn-danger tombol-hapus" data="' +
           data.id +
           '">Hapus</button>' +
@@ -45,6 +48,9 @@
       $('.tombol-hapus').click(async function() {
         await hapusSiswa($(this).attr('data'));
         location.reload();
+      })
+      $('link-ubah').clikc (async Function (){
+        window.location.replace('ubah-Siswa.html?docId=' + $(this).attr('data'));
       })
     });
   </script>
